@@ -67,6 +67,7 @@
     <Compile Include="CharacterData.cs" />
     <Compile Include="CharacterSprite.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="FormReference.cs" />
     <Compile Include="Input\ControllerButton.cs" />
     <Compile Include="Input\ControlStick.cs" />
     <Compile Include="Input\ControlTrigger.cs" />
