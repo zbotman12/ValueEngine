@@ -67,13 +67,17 @@
     <Compile Include="CharacterData.cs" />
     <Compile Include="CharacterSprite.cs" />
     <Compile Include="Color.cs" />
-    <Compile Include="ControllerButton.cs" />
-    <Compile Include="ControlStick.cs" />
+    <Compile Include="Input\ControllerButton.cs" />
+    <Compile Include="Input\ControlStick.cs" />
+    <Compile Include="Input\ControlTrigger.cs" />
+    <Compile Include="Input\DPad.cs" />
     <Compile Include="FastLoop.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="FontParser.cs" />
     <Compile Include="IGameObject.cs" />
-    <Compile Include="Input.cs" />
+    <Compile Include="Input\Input.cs" />
+    <Compile Include="Input\Keyboard.cs" />
+    <Compile Include="Input\Mouse.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PreciseTimer.cs" />
@@ -88,7 +92,7 @@
     <Compile Include="TextureManager.cs" />
     <Compile Include="Tween.cs" />
     <Compile Include="Vector.cs" />
-    <Compile Include="XboxController.cs" />
+    <Compile Include="Input\XboxController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

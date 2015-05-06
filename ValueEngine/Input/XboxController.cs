@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Tao.Sdl;
 
-namespace ValueEngine
+namespace ValueEngine.Input
 {
     public class XboxController : IDisposable
     {
@@ -28,6 +28,14 @@ namespace ValueEngine
         //Control Stick Buttons
         public ControllerButton ButtonL3 { get; private set; }
         public ControllerButton ButtonR3 { get; private set; }
+        
+        //Triggers
+        public ControlTrigger RightTrigger { get; private set; }
+        public ControlTrigger LeftTrigger { get; private set; }
+
+        //DPad
+        public DPad Dpad { get; private set; }
+
 
         public XboxController(int player)
         {
@@ -44,6 +52,9 @@ namespace ValueEngine
             ButtonStart = new ControllerButton(_joystick, 7);
             ButtonL3 = new ControllerButton(_joystick, 8);
             ButtonR3 = new ControllerButton(_joystick, 9);
+            RightTrigger = new ControlTrigger(_joystick, 2, false);
+            LeftTrigger = new ControlTrigger(_joystick, 2, true);
+            Dpad = new DPad(_joystick, 0);
 
         }
 
@@ -61,6 +72,9 @@ namespace ValueEngine
             ButtonBack.Update();
             ButtonL3.Update();
             ButtonR3.Update();
+            RightTrigger.Update();
+            LeftTrigger.Update();
+            Dpad.Update();
         }
 
         #region IDisposable Members

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Tao.Sdl;
 
-namespace ValueEngine
+namespace ValueEngine.Input
 {
     public class ControlStick
     {
