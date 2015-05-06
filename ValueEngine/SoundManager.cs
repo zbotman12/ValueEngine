@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ValueEngine
 {
-    public class SoundManager
+    public class SoundManager : IDisposable
     {
         //Sound Source Structure
         struct SoundSource
@@ -23,6 +23,7 @@ namespace ValueEngine
 
         //Member variables
         readonly int MaxSoundChannels = 256;
+        float _masterVolume = 1.0f;
         List<int> _soundChannels = new List<int>();
         Dictionary<string, SoundSource> _soundIdentifier =
             new Dictionary<string, SoundSource>();
@@ -83,6 +84,7 @@ namespace ValueEngine
                 {
                     Al.alSourcei(channel, Al.AL_LOOPING, 0);
                 }
+                Al.alSourcef(channel, Al.AL_GAIN, _masterVolume);
                 Al.alSourcePlay(channel);
 
                 return new Sound(channel);
@@ -95,14 +97,36 @@ namespace ValueEngine
 
         }
 
+        //Returns true if sound is currently playing
         public bool IsPlayingSound(Sound sound)
         {
-            return false;
+            return IsChannelPlaying(sound.Channel);
         }
 
+
+        //Stops sound from channel in given sound
         public void StopSound(Sound sound)
         {
+            if (sound.Channel == -1)
+            {
+                return;
+            }
+            Al.alSourceStop(sound.Channel);
+        }
 
+        //Changes the volume of all channels to new master volume
+        public void MasterVolume(float value)
+        {
+            _masterVolume = value;
+            foreach (int channel in _soundChannels)
+            {
+                Al.alSourcef(channel, Al.AL_GAIN, value);
+            }
+        }
+
+        public void ChangeVolume(Sound sound, float value)
+        {
+            Al.alSourcef(sound.Channel, Al.AL_GAIN, _masterVolume * value);
         }
 
         //Checks if a channel is currently being used
@@ -143,6 +167,22 @@ namespace ValueEngine
                     break;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            foreach (SoundSource soundSource in _soundIdentifier.Values)
+            {
+                SoundSource temp = soundSource;
+                Al.alDeleteBuffers(1, ref temp._bufferId);
+            }
+            _soundIdentifier.Clear();
+            foreach (int slot in _soundChannels)
+            {
+                int target = _soundChannels[slot];
+                Al.alDeleteSources(1, ref target);
+            }
+            Alut.alutExit();
         }
     }
 }

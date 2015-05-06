@@ -57,12 +57,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\TaoFramework\bin\Tao.Platform.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="Tao.Sdl, Version=1.2.13.0, Culture=neutral, PublicKeyToken=9c7a200e36c0094e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\TaoFramework\bin\Tao.Sdl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Batch.cs" />
     <Compile Include="CharacterData.cs" />
     <Compile Include="CharacterSprite.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="ControllerButton.cs" />
+    <Compile Include="ControlStick.cs" />
     <Compile Include="FastLoop.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="FontParser.cs" />
@@ -82,6 +88,7 @@
     <Compile Include="TextureManager.cs" />
     <Compile Include="Tween.cs" />
     <Compile Include="Vector.cs" />
+    <Compile Include="XboxController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
